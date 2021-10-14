@@ -51,16 +51,13 @@ class NavigationBar extends Component {
         return (
             <>
                 <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-                    // Homepage
                     <a className="navbar-brand col-sm-3 col-md-2 mr-0" target="_blank" rel="noopener noreferrer">
                       &nbsp; Ethereum world
                     </a>
-                    // Matching link
                     <a className="navbar-brand col-sm-3 col-md-2 mr-0" target="_blank" rel="noopener noreferrer">
                     <img src={brain} width="30" height="30" className="d-inline-block align-top" alt="" />
                     &nbsp; Matching
                     </a>
-                    // Roulete link
                     <a className="navbar-brand col-sm-3 col-md-2 mr-0" target="_blank" rel="noopener noreferrer">
                     <img src={dice} width="30" height="30" className="d-inline-block align-top" alt="" />
                     &nbsp; Roulette
