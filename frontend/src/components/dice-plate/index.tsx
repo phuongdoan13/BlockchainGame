@@ -32,7 +32,7 @@ export const DicePlateComponent: React.FC<DicePlateProps> = ({
       <img
         width={64}
         height="auto"
-        src={getStaticPath('/images/dice.svg', PUBLIC_URL)}
+        src={getStaticPath('Roulette/images/dice.svg', PUBLIC_URL)}
         alt="play-icon"
       />
     </button>

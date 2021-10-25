@@ -18,7 +18,7 @@ export type DiceName = typeof DICE_NAMES[number];
 export const DICE_IMAGES = DICE_NAMES.reduce(
   (prev, name) => ({
     ...prev,
-    [name]: getStaticPath(`/images/${name}.svg`, PUBLIC_URL),
+    [name]: getStaticPath(`/Roulette/images/${name}.svg`, PUBLIC_URL),
   }),
   {},
 ) as Record<DiceName, string>;
