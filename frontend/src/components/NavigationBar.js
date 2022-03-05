@@ -52,9 +52,9 @@ class NavigationBar extends Component {
                     <img src={process.env.PUBLIC_URL + '/NavigationBar/brain.png'} width="30" height="30" className="d-inline-block align-top" alt="" />
                     &nbsp; Matching
                     </a>
-                    <a className="navbar-brand col-sm-3 col-md-2 mr-0" target="_self" rel="noopener noreferrer" href="/roulette">
-                    <img src={process.env.PUBLIC_URL + '/NavigationBar/dice.png'} width="30" height="30" className="d-inline-block align-top" alt="" />
-                    &nbsp; Roulette
+                    <a className="navbar-brand col-sm-3 col-md-2 mr-0" target="_self" rel="noopener noreferrer" href="/snake">
+                    <img src={process.env.PUBLIC_URL + '/NavigationBar/Snake.png'} width="30" height="30" className="d-inline-block align-top" alt="" />
+                    &nbsp; Snake
                     </a>
                     {/* <a className="navbar-brand col-sm-3 col-md-2 mr-0" target="_blank" rel="noopener noreferrer">
                         <img src={annonymous} width="30" height="30" className="d-inline-block align-top" alt="" />

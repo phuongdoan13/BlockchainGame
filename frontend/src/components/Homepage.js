@@ -18,8 +18,8 @@ class Homepage extends Component {
                         <Link to="/matching">
                             <button className="button">Matching</button>
                         </Link>
-                        <Link to="/roulette">
-                            <button className="button">Roulette</button>
+                        <Link to="/snake">
+                            <button className="button">Snake</button>
                         </Link>
                     </div>
 

@@ -24,6 +24,13 @@ frontend </br>
 ├── tsconfig.json </br>
 └── yarn.lock
 
+## 2. Image sources
+Navigation bar
++ snake.png: https://freepngimg.com/png/82736-reptile-snakes-ladders-game-snake-grass
+
+Snake game:
++ Original source code: https://github.com/MaelDrapier/react-simple-snake
+
 ## Appendix: Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
