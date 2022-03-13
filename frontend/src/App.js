@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 // import ethereum_logo from './images/ethereum_logo.gif'
 
 // import component
-import NavigationBar from './components/NavigationBar';
-import Homepage from './components/Homepage';
-import Roulette from './components/Roulette';
-import Matching from './components/Matching';
+import NavigationBar from './components/ NavigationBar/NavigationBar';
+import Homepage from './components/Homepage/Homepage';
+import Matching from './components/Matching/Matching';
 import Board from './components/Snake/Board/Board.js'
+
 function App() {
   return (
     <div className="App">
@@ -18,7 +18,6 @@ function App() {
           <main>
             <Route path="/" exact component={Homepage} />
             <Route path="/matching"  component={Matching} />
-            <Route path="/roulette"  component={Roulette} />
             <Route path="/snake" component={Board}></Route>
           </main>
         </Router>

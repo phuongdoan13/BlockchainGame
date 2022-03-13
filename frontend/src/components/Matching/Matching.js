@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Web3 from 'web3';
-import "../styles/Matching.css";
+import "./Matching.css";
 const axios = require('axios').default;
 const PUBLIC_URL = process.env.PUBLIC_URL;
 
