@@ -1,5 +1,5 @@
 
-// File: @openzeppelin/matching/introspection/IERC165.sol
+// File: @openzeppelin/ERC721SC/introspection/IERC165.sol
 
 pragma solidity ^0.5.0;
 
@@ -24,7 +24,7 @@ interface IERC165 {
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
 }
 
-// File: @openzeppelin/matching/token/ERC721/IERC721.sol
+// File: @openzeppelin/ERC721SC/token/ERC721/IERC721.sol
 
 pragma solidity ^0.5.0;
 
@@ -79,14 +79,14 @@ contract IERC721 is IERC165 {
     function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public;
 }
 
-// File: @openzeppelin/matching/token/ERC721/IERC721Receiver.sol
+// File: @openzeppelin/ERC721SC/token/ERC721/IERC721Receiver.sol
 
 pragma solidity ^0.5.0;
 
 /**
  * @title ERC721 token receiver interface
  * @dev Interface for any contract that wants to support safeTransfers
- * from ERC721 asset matching.
+ * from ERC721 asset ERC721SC.
  */
 contract IERC721Receiver {
     /**
@@ -107,7 +107,7 @@ contract IERC721Receiver {
     public returns (bytes4);
 }
 
-// File: @openzeppelin/matching/math/SafeMath.sol
+// File: @openzeppelin/ERC721SC/math/SafeMath.sol
 
 pragma solidity ^0.5.0;
 
@@ -217,7 +217,7 @@ library SafeMath {
     }
 }
 
-// File: @openzeppelin/matching/utils/Address.sol
+// File: @openzeppelin/ERC721SC/utils/Address.sol
 
 pragma solidity ^0.5.0;
 
@@ -236,7 +236,7 @@ library Address {
      * false is an externally-owned account (EOA) and not a contract.
      */
     function isContract(address account) internal view returns (bool) {
-        // This method relies in extcodesize, which returns 0 for matching in
+        // This method relies in extcodesize, which returns 0 for ERC721SC in
         // construction, since the code is only stored at the end of the
         // constructor execution.
 
@@ -247,7 +247,7 @@ library Address {
     }
 }
 
-// File: @openzeppelin/matching/drafts/Counters.sol
+// File: @openzeppelin/ERC721SC/drafts/Counters.sol
 
 pragma solidity ^0.5.0;
 
@@ -286,7 +286,7 @@ library Counters {
     }
 }
 
-// File: @openzeppelin/matching/introspection/ERC165.sol
+// File: @openzeppelin/ERC721SC/introspection/ERC165.sol
 
 pragma solidity ^0.5.0;
 
@@ -309,7 +309,7 @@ contract ERC165 is IERC165 {
     mapping(bytes4 => bool) private _supportedInterfaces;
 
     constructor () internal {
-        // Derived matching need only register support for their own interfaces,
+        // Derived ERC721SC need only register support for their own interfaces,
         // we register support for ERC165 itself here
         _registerInterface(_INTERFACE_ID_ERC165);
     }
@@ -340,7 +340,7 @@ contract ERC165 is IERC165 {
     }
 }
 
-// File: @openzeppelin/matching/token/ERC721/ERC721.sol
+// File: @openzeppelin/ERC721SC/token/ERC721/ERC721.sol
 
 pragma solidity ^0.5.0;
 
@@ -641,7 +641,7 @@ contract ERC721 is ERC165, IERC721 {
     }
 }
 
-// File: @openzeppelin/matching/token/ERC721/IERC721Enumerable.sol
+// File: @openzeppelin/ERC721SC/token/ERC721/IERC721Enumerable.sol
 
 pragma solidity ^0.5.0;
 
@@ -657,7 +657,7 @@ contract IERC721Enumerable is IERC721 {
     function tokenByIndex(uint256 index) public view returns (uint256);
 }
 
-// File: @openzeppelin/matching/token/ERC721/ERC721Enumerable.sol
+// File: @openzeppelin/ERC721SC/token/ERC721/ERC721Enumerable.sol
 
 pragma solidity ^0.5.0;
 
@@ -858,7 +858,7 @@ contract ERC721Enumerable is ERC165, ERC721, IERC721Enumerable {
     }
 }
 
-// File: @openzeppelin/matching/token/ERC721/IERC721Metadata.sol
+// File: @openzeppelin/ERC721SC/token/ERC721/IERC721Metadata.sol
 
 pragma solidity ^0.5.0;
 
@@ -873,7 +873,7 @@ contract IERC721Metadata is IERC721 {
     function tokenURI(uint256 tokenId) external view returns (string memory);
 }
 
-// File: @openzeppelin/matching/token/ERC721/ERC721Metadata.sol
+// File: @openzeppelin/ERC721SC/token/ERC721/ERC721Metadata.sol
 
 pragma solidity ^0.5.0;
 
@@ -964,7 +964,7 @@ contract ERC721Metadata is ERC165, ERC721, IERC721Metadata {
     }
 }
 
-// File: @openzeppelin/matching/token/ERC721/ERC721Full.sol
+// File: @openzeppelin/ERC721SC/token/ERC721/ERC721Full.sol
 
 pragma solidity ^0.5.0;
 
