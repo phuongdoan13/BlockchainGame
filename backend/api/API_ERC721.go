@@ -5,16 +5,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	//matchingABI "./MatchingSC.json"
 )
 
 func MatchingContractABI(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	if (req.Method == "OPTIONS") {
+	if req.Method == "OPTIONS" {
 		w.Header().Set("Access-Control-Allow-Headers", "Authorization") // You can add more headers here if needed
 	} else {
-
-		b, err := ioutil.ReadFile("/Users/phuongdoantuminh/Projects/BlockchainManagement/backend/api/MatchingSC.json")
+		b, err := ioutil.ReadFile("/Users/phuongdoantuminh/Projects/BlockchainManagement/backend/api/util/MatchingSC.json")
 		if err != nil {
 			fmt.Println(err)
 		}
