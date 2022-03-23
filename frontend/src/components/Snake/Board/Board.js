@@ -1,7 +1,11 @@
 import React from 'react'
 import './Board.css'
 import GameOver from '../GameOver/GameOver.js'
+import AssetsBar from '../../AssetsBar/AssetsBar.js'
+import {CARD_ARRAY} from "../../const/MemoryToken_const"
 import Web3 from 'web3';
+const axios = require('axios').default;
+const PUBLIC_URL = process.env.PUBLIC_URL;
 class Board extends React.Component {
   constructor(props) {
     super(props)
@@ -26,7 +30,12 @@ class Board extends React.Component {
       score: 0,
       highScore: Number(localStorage.getItem('snakeHighScore')) || 0,
       newHighScore: false,
-      account: ""
+      account: "",
+      tokenImageURL: "/Snake/apple_default.jpeg",
+      token: null,
+      totalSupply: 0,
+      tokenURIs: [],
+      cardArray: [],
     }
   }
   async loadWeb3() {
@@ -50,15 +59,59 @@ class Board extends React.Component {
       window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
     }
   }
-  async componentWillMount() {
-    await this.loadWeb3()
 
+  async loadSmartContractABI(){
+    const res = await axios('http://localhost:8080/matchingABI');
+    return await res.data;
+  }
+
+  async loadBlockchainData() {
+    const web3 = window.web3
+    const accounts = await web3.eth.getAccounts()
+    this.setState({ account: accounts[0] })
+
+    // Load smart contract
+    const MemoryToken = await this.loadSmartContractABI()
+
+    const networkId = await web3.eth.net.getId()
+    const networkData = MemoryToken.networks[networkId]
+    if(networkData) {
+      const abi = MemoryToken.abi
+      const address = networkData.address
+      const token = new web3.eth.Contract(abi, address)
+
+      this.setState({ token })
+      const totalSupply = await token.methods.totalSupply().call()
+      this.setState({ totalSupply })
+      // Load Tokens
+      let balanceOf = await token.methods.balanceOf(accounts[0]).call()
+
+      for (let i = 0; i < balanceOf; i++) {
+        let id = await token.methods.tokenOfOwnerByIndex(accounts[0], i).call()
+        let tokenURI = await token.methods.tokenURI(id).call()
+
+        this.setState({
+          tokenURIs: [...this.state.tokenURIs, tokenURI]
+        })
+      }
+    } else {
+      alert('Smart contract not deployed to detected network.')
+    }
+  }
+
+  componentWillMount() {
+    this.loadWeb3()
+    this.loadBlockchainData()
+    console.log("will")
   }
 
   componentDidMount() {
+
     this.initGame()
+    console.log("Did")
     window.addEventListener('keydown', this.handleKeyDown)
     this.gameLoop()
+
   }
 
   initGame() {
@@ -100,6 +153,23 @@ class Board extends React.Component {
         blockHeight
     }
 
+    // set initial fruit image
+    console.log(this.state.tokenURIs)
+    // let tokenURIS_length = this.state.tokenURIs.length
+    // console.log(this.state.tokenURIs[Math.floor(Math.random() * tokenURIS_length)])
+    // if(tokenURIS_length !== 0){
+      this.setState({
+        tokenImageURL: "/Snake/apple_default.jpeg"
+      });
+    // }
+    // else{
+    //
+    //   this.setState({
+    //     tokenImageURL: this.state.tokenURIs[Math.floor(Math.random() * tokenURIS_length)]
+    //   });
+    // }
+
+    // set other initial states
     this.setState({
       width,
       height,
@@ -111,6 +181,7 @@ class Board extends React.Component {
     })
   }
 
+  // Make the Game repeat
   gameLoop() {
     let timeoutId = setTimeout(() => {
       if (!this.state.isGameOver) {
@@ -130,7 +201,7 @@ class Board extends React.Component {
     clearTimeout(this.state.timeoutId)
     window.removeEventListener('keydown', this.handleKeyDown)
   }
-
+  // Reset the game
   resetGame() {
     let width = this.state.width
     let height = this.state.height
@@ -186,7 +257,7 @@ class Board extends React.Component {
     for (let i = 0; i < 6; i++) color += hexa[Math.floor(Math.random() * 16)]
     return color
   }
-
+  // Move snake method
   moveSnake() {
     let snake = this.state.snake
     let previousPartX = this.state.snake[0].Xpos
@@ -205,6 +276,7 @@ class Board extends React.Component {
     this.setState({ snake })
   }
 
+  // Determine what happen if an apple is eaten
   tryToEatApple() {
     let snake = this.state.snake
     let apple = this.state.apple
@@ -250,6 +322,21 @@ class Board extends React.Component {
       // decrease the game loop timeout
       if (gameLoopTimeout > 25) gameLoopTimeout -= 0.5
 
+      // set new apple
+      let tokenURIS_length = this.state.tokenURIs.length;
+      if(tokenURIS_length == 0){
+        this.setState({
+          tokenImageURL: "/Snake/apple_default.jpeg"
+        });
+
+      }
+      else{
+        this.setState({
+          tokenImageURL: this.state.tokenURIs[Math.floor(Math.random() * tokenURIS_length)]
+        });
+      }
+
+      // set new states
       this.setState({
         snake,
         apple,
@@ -261,6 +348,7 @@ class Board extends React.Component {
     }
   }
 
+  // Determine what happen if a snake bites itself
   tryToEatSnake() {
     let snake = this.state.snake
 
@@ -270,6 +358,7 @@ class Board extends React.Component {
     }
   }
 
+  // Check if an apple is eaten
   isAppleOnSnake(appleXpos, appleYpos) {
     let snake = this.state.snake
     for (let i = 0; i < snake.length; i++) {
@@ -279,6 +368,7 @@ class Board extends React.Component {
     return false
   }
 
+  // Controller Methods
   moveHead() {
     switch (this.state.direction) {
       case 'left':
@@ -421,20 +511,21 @@ class Board extends React.Component {
             />
           )
         })}
-        <div
+        <img
           className='Block'
+          src={this.state.tokenImageURL}
           style={{
             width: this.state.blockWidth,
             height: this.state.blockHeight,
             left: this.state.apple.Xpos,
             top: this.state.apple.Ypos,
-            background: this.state.appleColor,
           }}
         />
         <div id='Score' style={{ fontSize: this.state.width / 20 }}>
           HIGH-SCORE: {this.state.highScore}&ensp;&ensp;&ensp;&ensp;SCORE:{' '}
           {this.state.score}
         </div>
+
       </div>
     )
   }
