@@ -30,7 +30,7 @@ Navigation bar
 
 Snake game:
 + Original source code: https://github.com/MaelDrapier/react-simple-snake
-
++ apple-default.jpeg: https://www.dreamstime.com/isolated-red-apple-pixel-art-white-background-apple-big-pixels-apple-pixel-art-image106403017
 Ropasi:
 + thumbnail: https://pngtree.com/freepng/hand-draw-gesture-of-rock-paper-scissors_5844255.html
 ## Appendix: Getting Started with Create React App
