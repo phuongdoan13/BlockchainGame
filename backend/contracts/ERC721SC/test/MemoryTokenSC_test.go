@@ -1,12 +1,14 @@
 package MemoryTokenSC_test
 
 import (
+	"context"
 	"crypto/ecdsa"
 	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/phuongdoan13/BlockchainGame/backend/contracts"
+	"github.com/phuongdoan13/BlockchainGame/backend/contracts/ERC721SC"
 	"github.com/stretchr/testify/assert"
 	"log"
 	"math"
@@ -49,7 +51,7 @@ func TestDeploy(t *testing.T) {
 	auth.GasLimit = uint64(3000000) // in units
 	auth.GasPrice = big.NewInt(1000000)
 
-	address, tx, instance, err := ERC721SC.DeployMatching(auth, client, "Memory Token", "MEM")
+	address, tx, instance, err := ERC721SC.DeployERC721SC(auth, client, "Memory Token", "MEM")
 	if err != nil {
 		panic(err)
 	}
@@ -67,8 +69,8 @@ func TestDeploy(t *testing.T) {
 func TestSmartContractHasName(t *testing.T) {
 	client := contracts.GetGanacheClient()
 
-	address := common.HexToAddress("0x3903895653567B95D2DcCff3dAfBF118d22d4a5d")
-	instance, err := ERC721SC.NewMatching(address, client)
+	address := common.HexToAddress("0xbF08c6CEcC51A8af59a07e7028076A2fb69Eb8E5")
+	instance, err := ERC721SC.NewERC721SC(address, client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -85,8 +87,8 @@ func TestSmartContractHasName(t *testing.T) {
 func TestSmartContractHasSymbol(t *testing.T) {
 	client := contracts.GetGanacheClient()
 
-	address := common.HexToAddress("0x3903895653567B95D2DcCff3dAfBF118d22d4a5d")
-	instance, err := ERC721SC.NewMatching(address, client)
+	address := common.HexToAddress("0xbF08c6CEcC51A8af59a07e7028076A2fb69Eb8E5")
+	instance, err := ERC721SC.NewERC721SC(address, client)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -97,6 +99,7 @@ func TestSmartContractHasSymbol(t *testing.T) {
 	}
 
 	assert.Equal(t, tokenSymbol, "MEM", "Symbol did not match!")
+	fmt.Println("Symbol: ", tokenSymbol)
 }
 
 // Test case: After deploying a contract,
