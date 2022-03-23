@@ -1,25 +1,26 @@
 package matchingSCtest
 
 import (
-	"context"
 	"crypto/ecdsa"
 	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/phuongdoan13/BlockchainGame/backend/contracts/matching"
 	"math/big"
+
+	"context"
+	"github.com/ethereum/go-ethereum/ethclient"
 	"testing"
 )
 
 func TestDeploy(t *testing.T) {
 
-	client, err := ethclient.Dial("http://127.0.0.1:8545")
+	client, err := ethclient.Dial("http://127.0.0.1:7545")
 	if err != nil {
 		panic(err)
 	}
 
-	privateKey, err := crypto.HexToECDSA("e32f2dc8655dc17558afb1e9bdd21b6f976e60af94b390480deafb422f9a4975")
+	privateKey, err := crypto.HexToECDSA("db454228402b38f7e0ce9e6df42d7b04c640fae680dad83c06b8dea9d1b3c4ed")
 	if err != nil {
 		panic(err)
 	}
@@ -59,7 +60,7 @@ func TestDeploy(t *testing.T) {
 
 	_, _ = instance, tx
 
-	if(0 == 1){
+	if 0 == 1 {
 		t.Errorf("Dummy test case")
 	}
 }
