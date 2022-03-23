@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Web3 from 'web3';
 import "./Matching.css";
+import { CARD_ARRAY } from '../const/MemoryToken_const';
 const axios = require('axios').default;
 const PUBLIC_URL = process.env.PUBLIC_URL;
 
