@@ -6,7 +6,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/phuongdoan13/BlockchainGame/backend/contracts"
 	"github.com/stretchr/testify/assert"
 	"log"
 	"math"
@@ -16,10 +16,7 @@ import (
 
 func TestDeploy(t *testing.T) {
 
-	client, err := ethclient.Dial("http://127.0.0.1:7545")
-	if err != nil {
-		panic(err)
-	}
+	client := contracts.GetGanacheClient()
 
 	privateKey, err := crypto.HexToECDSA("db454228402b38f7e0ce9e6df42d7b04c640fae680dad83c06b8dea9d1b3c4ed")
 	if err != nil {
@@ -68,10 +65,7 @@ func TestDeploy(t *testing.T) {
 
 // Test case: Test if the instance of the smart contract has the name "Memory Token"
 func TestSmartContractHasName(t *testing.T) {
-	client, err := ethclient.Dial("http://localhost:8545")
-	if err != nil {
-		log.Fatal(err)
-	}
+	client := contracts.GetGanacheClient()
 
 	address := common.HexToAddress("0x3903895653567B95D2DcCff3dAfBF118d22d4a5d")
 	instance, err := ERC721SC.NewMatching(address, client)
@@ -89,10 +83,7 @@ func TestSmartContractHasName(t *testing.T) {
 
 // Test case: Test if the instance of the smart contract has the symbol "MEM"
 func TestSmartContractHasSymbol(t *testing.T) {
-	client, err := ethclient.Dial("http://localhost:8545")
-	if err != nil {
-		log.Fatal(err)
-	}
+	client := contracts.GetGanacheClient()
 
 	address := common.HexToAddress("0x3903895653567B95D2DcCff3dAfBF118d22d4a5d")
 	instance, err := ERC721SC.NewMatching(address, client)
@@ -113,11 +104,7 @@ func TestSmartContractHasSymbol(t *testing.T) {
 // (Unless it joins the game)
 func TestAccountBalanceAfterSmartContractDeploy(t *testing.T) {
 	// Get the Ethereum client
-	_, err := ethclient.Dial("http://localhost:8545")
-	if err != nil {
-		//t.Errorf(err)
-		t.Fatal(err)
-	}
+	client := contracts.GetGanacheClient()
 
 	// Get the deployer's balance after the deployment
 	blockNumber := big.NewInt(1)
