@@ -56,10 +56,10 @@ class NavigationBar extends Component {
                     <img src={process.env.PUBLIC_URL + '/NavigationBar/Snake.png'} width="30" height="30" className="d-inline-block align-top" alt="" />
                     &nbsp; Snake
                     </a>
-                    {/* <a className="navbar-brand col-sm-3 col-md-2 mr-0" target="_blank" rel="noopener noreferrer">
-                        <img src={annonymous} width="30" height="30" className="d-inline-block align-top" alt="" />
-                        &nbsp; {this.state.account}
-                    </a> */}
+                    <a className="navbar-brand col-sm-3 col-md-2 mr-0" target="_self" rel="noopener noreferrer" href="/ropasi">
+                    <img src={process.env.PUBLIC_URL + '/NavigationBar/ropasi.jpeg'} width="30" height="30" className="d-inline-block align-top" alt="" />
+                    &nbsp; Ropasi
+                    </a>
                 </nav>
             </>
         );

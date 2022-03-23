@@ -8,7 +8,7 @@ import (
 	//matchingABI "./MatchingSC.json"
 )
 
-func MatchingContractABI(w http.ResponseWriter, req *http.Request){
+func MatchingContractABI(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	if (req.Method == "OPTIONS") {
 		w.Header().Set("Access-Control-Allow-Headers", "Authorization") // You can add more headers here if needed
@@ -26,5 +26,6 @@ func MatchingContractABI(w http.ResponseWriter, req *http.Request){
 		}
 
 		json.NewEncoder(w).Encode(objmap)
+		fmt.Println(objmap)
 	}
 }

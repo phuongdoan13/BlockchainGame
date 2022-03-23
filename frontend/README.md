@@ -31,6 +31,8 @@ Navigation bar
 Snake game:
 + Original source code: https://github.com/MaelDrapier/react-simple-snake
 
+Ropasi:
++ thumbnail: https://pngtree.com/freepng/hand-draw-gesture-of-rock-paper-scissors_5844255.html
 ## Appendix: Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

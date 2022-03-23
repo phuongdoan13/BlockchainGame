@@ -98,9 +98,11 @@ class Matching extends Component {
 
     // Load smart contract
     const MemoryToken = await this.loadSmartContractABI()
-
+    console.log(MemoryToken)
     const networkId = await web3.eth.net.getId()
+    console.log(networkId)
     const networkData = MemoryToken.networks[networkId]
+    console.log(networkData)
     if(networkData) {
       const abi = MemoryToken.abi
       const address = networkData.address

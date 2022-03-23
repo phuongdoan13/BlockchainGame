@@ -21,6 +21,9 @@ class Homepage extends Component {
                         <Link to="/snake">
                             <button className="button">Snake</button>
                         </Link>
+                        <Link to="/ropasi">
+                            <button className="button">Ropasi</button>
+                        </Link>
                     </div>
 
                 </header>
