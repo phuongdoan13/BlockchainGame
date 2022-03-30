@@ -16,6 +16,11 @@ import (
 
 func WinERC20_controller(w http.ResponseWriter, r *http.Request) {
 	enableCors(&w)
+	if r.Method == "OPTIONS" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+	
 	// Try to decode the request body into the struct. If there is an error,
 	// respond to the client with the error message and a 400 status code.
 	var p winERC20_RequestBody

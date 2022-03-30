@@ -6,8 +6,7 @@ class GameOver extends React.Component {
         let url = 'http://localhost:8080/winERC20'
         let config = {
             headers: {
-                "Content-Type": "application/json",
-                'Access-Control-Allow-Origin': '*',
+                "Content-Type": "application/json"
             }
         }
         let data = {

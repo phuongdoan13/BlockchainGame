@@ -70,14 +70,14 @@ func TestBalanceOf(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("t1: %T\n", client)
+
 	address := common.HexToAddress("0x0A4c3AD7cE0c28CF3AD65B2E5643bb5a5043Ee44")
 	instance, err := ERC20SC.NewERC20SC(address, client)
 	if err != nil {
 		log.Fatal(err)
 	}
 	//fmt.Println(instance.TotalSupply(nil))
-	userPublicAddress := common.HexToAddress("0x941B2bb2CA1E6aF49A728Ed0f0556cc070b23AF7")
+	userPublicAddress := common.HexToAddress("0x8a2a3a1dacF2B4b57734eB3DB71c33d3EBe263B6")
 	balance, err := instance.BalanceOf(nil, userPublicAddress)
 	if err != nil {
 		log.Fatal(err)

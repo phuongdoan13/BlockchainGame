@@ -18,6 +18,6 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/", helloHandler)
 	router.HandleFunc("/matchingABI", api.MatchingContractABI)
-	router.HandleFunc("/winERC20", api.WinERC20_controller).Methods("POST")
+	router.HandleFunc("/winERC20", api.WinERC20_controller).Methods("POST", "OPTIONS")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
