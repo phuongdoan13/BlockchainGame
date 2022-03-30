@@ -11,6 +11,7 @@ import Matching from './components/Matching/Matching';
 import Board from './components/Snake/Board/Board.js';
 // import Ropasi from './components/Ropasi_archived/Ropasi';
 // import Play from './components/Ropasi_archived/Play.js';
+import Ropasi from './components/Ropasi/app/Ropasi';
 function App() {
   return (
     <div className="App">
@@ -21,7 +22,7 @@ function App() {
             <Route path="/matching"  component={Matching} />
             <Route path="/snake" component={Board}></Route>
             <Route path="/ropasi" component={Ropasi}></Route>
-            <Route path="/ropasi/game" component={Play}></Route>
+            {/* <Route path="/ropasi/game" component={Play}></Route> */}
           </main>
         </Router>
     </div>

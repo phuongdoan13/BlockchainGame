@@ -1,0 +1,39 @@
+.Ropasi {
+  text-align: center;
+}
+.Ropasi > p {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.Ropasi-logo {
+  height: 40vmin;
+}
+
+.Ropasi-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.Ropasi-link {
+  color: #09d3ac;
+}
+
+header {
+  background: black;
+  padding: 20px;
+}
+
+header > h1 {
+  columns: #25272e;
+  text-align: center;
+}
