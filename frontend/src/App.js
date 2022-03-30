@@ -9,8 +9,8 @@ import NavigationBar from './components/ NavigationBar/NavigationBar';
 import Homepage from './components/Homepage/Homepage';
 import Matching from './components/Matching/Matching';
 import Board from './components/Snake/Board/Board.js';
-import Ropasi from './components/Ropasi/Ropasi';
-import Play from './components/Ropasi/Play.js';
+// import Ropasi from './components/Ropasi_archived/Ropasi';
+// import Play from './components/Ropasi_archived/Play.js';
 function App() {
   return (
     <div className="App">
