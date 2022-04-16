@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"encoding/json"
+	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
@@ -20,7 +21,7 @@ func WinERC20_controller(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		return
 	}
-	
+
 	// Try to decode the request body into the struct. If there is an error,
 	// respond to the client with the error message and a 400 status code.
 	var p winERC20_RequestBody
@@ -29,7 +30,7 @@ func WinERC20_controller(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-
+	fmt.Println(p)
 	// Perform transaction
 	err = winERC20_implementer(p)
 	if err != nil {
@@ -49,21 +50,25 @@ func WinERC20_controller(w http.ResponseWriter, r *http.Request) {
 
 func winERC20_implementer(p winERC20_RequestBody) error {
 	// PERFORM Transfer() method of ERC20 contract
+	contractAddress := "0xd782EE5f0aeD35787000b3953a46C087691847AC"
+	publicAddress := p.PublicAddress
+	deployerPrivateKey := "d96fcaba769f8413ab98a7b7096e0830aa92daba147e7475075c04ff259aa3c7"
+	amount := p.Amount
 
 	// Get connection
 	client := contracts.GetGanacheClient()
 
 	// Get smart contract
-	address := common.HexToAddress("0x0A4c3AD7cE0c28CF3AD65B2E5643bb5a5043Ee44")
+	address := common.HexToAddress(contractAddress)
 	instance, err := ERC20SC.NewERC20SC(address, client)
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
 
 	// Get transaction auth
-	privateKey, err := crypto.HexToECDSA("db454228402b38f7e0ce9e6df42d7b04c640fae680dad83c06b8dea9d1b3c4ed")
+	privateKey, err := crypto.HexToECDSA(deployerPrivateKey)
 	if err != nil {
-		return err
+		panic(err)
 	}
 	publicKey := privateKey.Public()
 	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
@@ -73,15 +78,15 @@ func winERC20_implementer(p winERC20_RequestBody) error {
 	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
 	nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
 	if err != nil {
-		return err
+		panic(err)
 	}
 	chainID, err := client.ChainID(context.Background())
 	if err != nil {
-		return err
+		panic(err)
 	}
 	auth, err := bind.NewKeyedTransactorWithChainID(privateKey, chainID)
 	if err != nil {
-		return err
+		panic(err)
 	}
 	auth.Nonce = big.NewInt(int64(nonce))
 	auth.Value = big.NewInt(0)      // in wei
@@ -89,12 +94,12 @@ func winERC20_implementer(p winERC20_RequestBody) error {
 	auth.GasPrice = big.NewInt(1000000)
 
 	// Do transfer
-	recipientPublicAddress := common.HexToAddress(p.PublicAddress)
-	_, err = instance.Transfer(auth, recipientPublicAddress, &p.Amount)
+	recipientPublicAddress := common.HexToAddress(publicAddress)
+	transaction, err := instance.Transfer(auth, recipientPublicAddress, &amount)
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
-
+	fmt.Println(transaction)
 	return nil
 }
 

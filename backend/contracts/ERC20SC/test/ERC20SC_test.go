@@ -16,10 +16,10 @@ import (
 )
 
 func TestDeploy(t *testing.T) {
-
+	deployerPrivateKey := "d96fcaba769f8413ab98a7b7096e0830aa92daba147e7475075c04ff259aa3c7"
 	client := contracts.GetGanacheClient()
 
-	privateKey, err := crypto.HexToECDSA("db454228402b38f7e0ce9e6df42d7b04c640fae680dad83c06b8dea9d1b3c4ed")
+	privateKey, err := crypto.HexToECDSA(deployerPrivateKey)
 	if err != nil {
 		panic(err)
 	}
@@ -48,7 +48,7 @@ func TestDeploy(t *testing.T) {
 	auth.Nonce = big.NewInt(int64(nonce))
 	auth.Value = big.NewInt(0)      // in wei
 	auth.GasLimit = uint64(3000000) // in units
-	auth.GasPrice = big.NewInt(1000000)
+	auth.GasPrice = big.NewInt(10000)
 
 	address, tx, instance, err := ERC20SC.DeployERC20SC(auth, client, big.NewInt(1000))
 	if err != nil {
@@ -66,18 +66,21 @@ func TestDeploy(t *testing.T) {
 
 // Test case: Test BalanceOf function
 func TestBalanceOf(t *testing.T) {
+	contractAddress := "0xd782EE5f0aeD35787000b3953a46C087691847AC"
+	publicAddress := "0x0b843Dd4c33883d6c191F68279C326fc105644FE"
+
 	client, err := ethclient.Dial("http://localhost:7545")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	address := common.HexToAddress("0x0A4c3AD7cE0c28CF3AD65B2E5643bb5a5043Ee44")
+	address := common.HexToAddress(contractAddress)
 	instance, err := ERC20SC.NewERC20SC(address, client)
 	if err != nil {
 		log.Fatal(err)
 	}
 	//fmt.Println(instance.TotalSupply(nil))
-	userPublicAddress := common.HexToAddress("0x8a2a3a1dacF2B4b57734eB3DB71c33d3EBe263B6")
+	userPublicAddress := common.HexToAddress(publicAddress)
 	balance, err := instance.BalanceOf(nil, userPublicAddress)
 	if err != nil {
 		log.Fatal(err)
@@ -89,20 +92,23 @@ func TestBalanceOf(t *testing.T) {
 
 // Test case: Test BalanceOf function
 func TestTransfer(t *testing.T) {
+	contractAddress := "0xd782EE5f0aeD35787000b3953a46C087691847AC"
+	publicAddress := "0x0b843Dd4c33883d6c191F68279C326fc105644FE"
+	deployerPrivateKey := "d96fcaba769f8413ab98a7b7096e0830aa92daba147e7475075c04ff259aa3c7"
 	// Get connection
 	client, err := ethclient.Dial("http://localhost:7545")
 	if err != nil {
 		log.Fatal(err)
 	}
 	// Get smart contract
-	address := common.HexToAddress("0x0A4c3AD7cE0c28CF3AD65B2E5643bb5a5043Ee44")
+	address := common.HexToAddress(contractAddress)
 	instance, err := ERC20SC.NewERC20SC(address, client)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// Get transaction auth
-	privateKey, err := crypto.HexToECDSA("db454228402b38f7e0ce9e6df42d7b04c640fae680dad83c06b8dea9d1b3c4ed")
+	privateKey, err := crypto.HexToECDSA(deployerPrivateKey)
 	if err != nil {
 		panic(err)
 	}
@@ -130,8 +136,8 @@ func TestTransfer(t *testing.T) {
 	auth.GasPrice = big.NewInt(1000000)
 
 	// Do transfer
-	recipientPublicAddress := common.HexToAddress("0x941B2bb2CA1E6aF49A728Ed0f0556cc070b23AF7")
-	transaction, err := instance.Transfer(auth, recipientPublicAddress, big.NewInt(10))
+	recipientPublicAddress := common.HexToAddress(publicAddress)
+	transaction, err := instance.Transfer(auth, recipientPublicAddress, big.NewInt(200))
 	if err != nil {
 		log.Fatal(err)
 	}

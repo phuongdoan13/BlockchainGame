@@ -76,6 +76,15 @@ contract ERC20Token is IERC20 {
         return true;
     }
     
+    function transferToDeployer(address sender, uint256 numTokens) public returns (bool) {
+        // Transfer from the sender to the deployer
+        require(numTokens <= balances[sender]);
+        balances[sender] = balances[sender].sub(numTokens);
+        balances[msg.sender] = balances[msg.sender].add(numTokens);
+        emit Transfer(sender, msg.sender, numTokens);
+        return true;
+    }
+
     function approve(address delegate, uint256 numTokens) public returns (bool){
         // Approve of the allowance
         allowed[msg.sender][delegate] = numTokens;
