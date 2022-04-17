@@ -1,3 +1,9 @@
 .idea/
 BlockchainManagement.iml
+backend/contracts/roulette
 frontend/node_modules/
+frontend/rock-paper-scissors-master
+frontend/src/components/Roulette_archived
+frontend/src/components/Ropasi_archived
+# frontend/src/components/Ropasi
+.vscode
