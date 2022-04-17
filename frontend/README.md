@@ -2,7 +2,7 @@
 This folder contains the client side of the project.
 The main programming language used is Typescript, implementing React library.
 
-## 2. Sources code and images
+ources code and images
 Homepage: 
 + ethereum_logo.gif: https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/25025132603145051278604323185779645656209220423515599340268486188506500038657
 
