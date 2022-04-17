@@ -50,7 +50,7 @@ func TestDeploy(t *testing.T) {
 	auth.GasLimit = uint64(3000000) // in units
 	auth.GasPrice = big.NewInt(10000)
 
-	address, tx, instance, err := ERC20SC.DeployERC20SC(auth, client, big.NewInt(1000))
+	address, tx, instance, err := ERC20SC.DeployERC20SC(auth, client, big.NewInt(10000))
 	if err != nil {
 		panic(err)
 	}
@@ -66,7 +66,7 @@ func TestDeploy(t *testing.T) {
 
 // Test case: Test BalanceOf function
 func TestBalanceOf(t *testing.T) {
-	contractAddress := "0xd782EE5f0aeD35787000b3953a46C087691847AC"
+	contractAddress := "0xDFe2c2493a93fb50Da5bD51Adf846c9fF58ba1Ef"
 	publicAddress := "0x0b843Dd4c33883d6c191F68279C326fc105644FE"
 
 	client, err := ethclient.Dial("http://localhost:7545")

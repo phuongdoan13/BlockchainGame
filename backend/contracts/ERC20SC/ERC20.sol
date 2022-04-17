@@ -33,7 +33,7 @@ contract ERC20Token is IERC20 {
     string public constant name = "ERC20Token";
     string public constant symbol = "E20";
     uint256 public constant decimals = 18;
-
+    address payable deployer;
 
     // Map address with balance for viewing
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
@@ -54,6 +54,7 @@ contract ERC20Token is IERC20 {
         // Constructor to specify the number of tokens available
         totalSupply_ = total;
         balances[msg.sender] = totalSupply_; // the person who created the smart contract will initally own all
+        deployer = msg.sender;
     }
 
     function totalSupply() public view returns (uint256) {
@@ -66,6 +67,14 @@ contract ERC20Token is IERC20 {
         return balances[tokenOwner];
     }
 
+    function transferToPlayer(uint256 numTokens) public returns (bool) {
+        // Transfer from the deployer to the specified receiver
+        require(numTokens <= balances[deployer]);
+        balances[deployer] = balances[deployer].sub(numTokens);
+        balances[msg.sender] = balances[msg.sender].add(numTokens);
+        emit Transfer(deployer, msg.sender, numTokens);
+        return true;
+    }
 
     function transfer(address receiver, uint256 numTokens) public returns (bool) {
         // Transfer from the deployer to the specified receiver
@@ -73,15 +82,6 @@ contract ERC20Token is IERC20 {
         balances[msg.sender] = balances[msg.sender].sub(numTokens);
         balances[receiver] = balances[receiver].add(numTokens);
         emit Transfer(msg.sender, receiver, numTokens);
-        return true;
-    }
-    
-    function transferToDeployer(address sender, uint256 numTokens) public returns (bool) {
-        // Transfer from the sender to the deployer
-        require(numTokens <= balances[sender]);
-        balances[sender] = balances[sender].sub(numTokens);
-        balances[msg.sender] = balances[msg.sender].add(numTokens);
-        emit Transfer(sender, msg.sender, numTokens);
         return true;
     }
 

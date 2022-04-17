@@ -50,7 +50,7 @@ func WinERC20_controller(w http.ResponseWriter, r *http.Request) {
 
 func winERC20_implementer(p winERC20_RequestBody) error {
 	// PERFORM Transfer() method of ERC20 contract
-	contractAddress := "0xd782EE5f0aeD35787000b3953a46C087691847AC"
+	contractAddress := "0xDFe2c2493a93fb50Da5bD51Adf846c9fF58ba1Ef"
 	publicAddress := p.PublicAddress
 	deployerPrivateKey := "d96fcaba769f8413ab98a7b7096e0830aa92daba147e7475075c04ff259aa3c7"
 	amount := p.Amount
