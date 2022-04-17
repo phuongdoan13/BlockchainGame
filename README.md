@@ -11,8 +11,8 @@
 **Libraries**: Geth
 
 ### 2.1. Frontend
-**Programming languages**: Typescript </br>
-**Libraries**: React
+**Programming languages**: Javascript </br>
+**Libraries**: React, web3js
 
 ## 3. Structure
 . </br>
