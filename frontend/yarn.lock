@@ -10791,6 +10791,11 @@
   dependencies:
     "performance-now" "^2.1.0"
 
+"random-org@^2.2.0":
+  "integrity" "sha512-I2pRupwSsShM2wFIb7HAJ/X6q+uDAks5vHrdggyDLrmT9/ADuML+RDgmoUTLdELNR/pb+28VVaS1qSMe8/hf5w=="
+  "resolved" "https://registry.npmjs.org/random-org/-/random-org-2.2.0.tgz"
+  "version" "2.2.0"
+
 "randombytes@^2.0.0", "randombytes@^2.0.1", "randombytes@^2.0.5", "randombytes@^2.1.0":
   "integrity" "sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ=="
   "resolved" "https://registry.npmjs.org/randombytes/-/randombytes-2.1.0.tgz"

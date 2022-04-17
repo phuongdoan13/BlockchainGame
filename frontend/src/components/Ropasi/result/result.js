@@ -6,7 +6,6 @@ export const Result = (props) => {
   let result = '';
   const user = '😎';
   const computer = '🤖';
-  console.log(props.gameStatus.status);
   switch (props.gameStatus.status) {
     case 'win':
       result = `${props.gameStatus.player}${user} beats ${props.gameStatus.computer}${computer}. You win! 🌈`;

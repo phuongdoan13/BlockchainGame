@@ -1,0 +1,5 @@
+{
+    "abi": [{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"constant":true,"inputs":[{"internalType":"uint256","name":"random_number","type":"uint256"}],"name":"randMod","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"}],
+    "address": "0x297D52321Ac45E1fF3E5d472AD74B5FdAe62B2d1",
+    "dealerPublicAddress": "0xEBBFDbb2384DC0De0B50De411eA2dCA00Ed04A7a"
+  }
