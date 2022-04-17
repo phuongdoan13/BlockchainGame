@@ -20,7 +20,7 @@ func TestDeploy(t *testing.T) {
 
 	client := contracts.GetGanacheClient()
 
-	privateKey, err := crypto.HexToECDSA("db454228402b38f7e0ce9e6df42d7b04c640fae680dad83c06b8dea9d1b3c4ed")
+	privateKey, err := crypto.HexToECDSA("3b79e47859611d8d8a87f06c94c84c5a0f8d9f96f13901a1dccaa9fa336daa10")
 	if err != nil {
 		panic(err)
 	}
