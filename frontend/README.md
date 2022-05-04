@@ -14,7 +14,7 @@ Navigation bar:
 
 Matching game:
 + Original youtube tutorial: https://www.youtube.com/watch?v=x-6ruqmNS3o
-+ Original source code: https://github.com/MaelDrapier/react-simple-snake
++ Original source code: https://github.com/dappuniversity/blockchain_game
 
 Ropasi:
 + Original souce code: https://github.com/MaelDrapier/react-simple-snake
